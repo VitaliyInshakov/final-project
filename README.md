@@ -31,7 +31,7 @@ $ gulp
 4. You are adorable and ready to use app :)
 
 ## Tasks for the Gulp
-1. Default (just gulp): starts browsersync and reload the page when changing js, css and html. The browser should open independently.
+1. Default (just gulp): starts json-server, browsersync and reload the page when changing js, css and html. The browser should open independently.
 2. Build (gulp build): compiles and merges .jsx and .scss files into one file js and css and puts them in a folder 'public'.
 By default, flag 'production' equals 'false' (is in gulpfile.js), that means the resulting files are not minified.
 
