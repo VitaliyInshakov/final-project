@@ -1,0 +1,84 @@
+@import 'partials/mixins';
+@import 'partials/variables';
+
+html {
+  overflow: hidden;
+}
+.main{
+  position: relative;
+
+  &__sidebar{
+    overflow: hidden;
+    visibility: visible;
+    width: 280px;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    transform: translateX(0);
+    transition: transform 0.25s ease;
+    z-index: 98;
+    background-color: #fff;
+    height: calc(100vh - 64px);
+    &:hover{
+      overflow-y: auto;
+    }
+    @include media-query(1023px){
+      transform: translateX(-280px);
+      visibility: hidden;
+      box-shadow: 0 0 16px rgba(0,0,0,.28);
+    }
+
+    &--hide{
+      transform: translateX(-280px);
+      visibility: hidden;
+
+      @include media-query(1023px){
+        transform: translateX(0);
+        visibility: visible;
+      }
+    }
+  }
+  &__content{
+    margin-left: 280px;
+    transition: margin-left 0.25s ease;
+    overflow-y: auto;
+
+    &--full{
+      margin-left: 0;
+    }
+    @include media-query(1023px){
+      margin-left: 0;
+    }
+  }
+}
+.button-add{
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  margin-bottom: 24px;
+  margin-right: 24px;
+  
+  &:hover{
+    & .btn {
+      background-color: lighten($btn-add-bg-color, 10%)
+    }
+  }
+  & .btn {
+    background-color: $btn-add-bg-color;
+    border: none;
+    border-radius: 50%;
+    height: 56px;
+    width: 56px;
+    box-shadow: 0 6px 10px 0 rgba(0,0,0,0.14);
+    outline: none !important;
+    position: relative;
+    
+    &__content{
+      font-size: 24px;
+      color: #ffffff;
+      position: absolute;
+      top: 9px;
+      left: 21px;
+    }
+  }
+}

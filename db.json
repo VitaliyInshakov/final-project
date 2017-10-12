@@ -1,0 +1,114 @@
+{
+  "contacts": [
+    {
+      "id": 1,
+      "firstName": "Eddard",
+      "secondName": "Stark",
+      "phone": "+380664997467",
+      "birthday": "01.01.2000",
+      "website": "http://example.com",
+      "email": "eddard.stark@direwolf.com",
+      "company": "freelance"
+    },
+    {
+      "id": 2,
+      "firstName": "Robert",
+      "secondName": "Baratheon",
+      "phone": "+380669273044",
+      "birthday": "01.01.2000",
+      "website": "http://example.com",
+      "email": "robert.baratheon@deer.com",
+      "company": "freelance"
+    },
+    {
+      "id": 3,
+      "firstName": "Daenerys",
+      "secondName": "Targaryen",
+      "phone": "+380669227290",
+      "birthday": "01.01.2000",
+      "website": "http://example.com",
+      "email": "daenerys.targaryen@dragon.com",
+      "company": "freelance"
+    },
+    {
+      "id": 4,
+      "firstName": "Jorah",
+      "secondName": "Mormont",
+      "phone": "+380662997450",
+      "birthday": "01.01.2000",
+      "website": "http://example.com",
+      "email": "jorah.mormont@bear.com",
+      "company": "freelance"
+    },
+    {
+      "id": 5,
+      "firstName": "Sandor",
+      "secondName": "Clegane",
+      "phone": "+380668011523",
+      "birthday": "01.01.2000",
+      "website": "http://example.com",
+      "email": "sandor.clegane@dog.com",
+      "company": "freelance"
+    },
+    {
+      "id": 6,
+      "firstName": "Theon",
+      "secondName": "Greyjoy",
+      "phone": "+380667228692",
+      "birthday": "01.01.2000",
+      "website": "http://example.com",
+      "email": "theon.greyjoy@kraken.com",
+      "company": "freelance"
+    },
+    {
+      "id": 7,
+      "firstName": "Cersei",
+      "secondName": "Lannister",
+      "phone": "+380667032800",
+      "birthday": "01.01.2000",
+      "website": "http://example.com",
+      "email": "cersei.lannister@lion.com",
+      "company": "freelance"
+    },
+    {
+      "id": 8,
+      "firstName": "Robert",
+      "secondName": "Arryn",
+      "phone": "+380669435690",
+      "birthday": "01.01.2000",
+      "website": "http://example.com",
+      "email": "robert.arryn@falcon.com",
+      "company": "freelance"
+    },
+    {
+      "id": 9,
+      "firstName": "Catelyn",
+      "secondName": "Tully",
+      "phone": "+380666937636",
+      "birthday": "01.01.2000",
+      "website": "http://example.com",
+      "email": "catelyn.tully@trout.com",
+      "company": "freelance"
+    },
+    {
+      "id": 10,
+      "firstName": "Margaery",
+      "secondName": "Tyrell",
+      "phone": "+380668311068",
+      "birthday": "01.01.2000",
+      "website": "http://example.com",
+      "email": "margaery.tyrell@rose.com",
+      "company": "freelance"
+    }
+  ],
+  "groups": [
+    {
+      "id": 1,
+      "name": "group1"
+    },
+    {
+      "id": 2,
+      "name": "group2"
+    }
+  ]
+}

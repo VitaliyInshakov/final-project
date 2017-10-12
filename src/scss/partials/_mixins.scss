@@ -1,0 +1,33 @@
+@import 'variables';
+
+@mixin clear-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+@mixin custom-input-field {
+  font-size: 16px;
+  color: #000;
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+  border-bottom: 1px solid rgba(0, 0, 0, .12);
+    &:focus{
+      border-bottom: 2px solid $header-bg-color;
+      box-shadow: none;
+    }
+}
+
+@mixin media-query($breakpoint){
+  @media only screen and (max-width: $breakpoint) { 
+    @content; 
+  }
+}
+
+@mixin browser($browsers) {
+  html[data-browser*="#{$browsers}"] & {
+    @content;
+  }
+}

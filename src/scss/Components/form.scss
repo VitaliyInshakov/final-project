@@ -1,0 +1,81 @@
+@import '../partials/variables';
+@import '../partials/mixins';
+
+.my-modal__form{
+  @include browser("MSIE 9"){
+    width: 100%;
+  }
+  & .tooltip-error::after {
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 0px 12px 12px 12px;
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
+    color: #FFF;
+    content: attr(data-tooltip);
+    margin-bottom: -25px;
+    padding: 3px 7px;
+    position: absolute;
+    left: 38px;
+    z-index: 5;
+    bottom: -3px;
+    transition: all 0.4s ease-in-out;
+  }
+  & .input__row{
+    display: flex;
+    margin-bottom: 10px;
+    position: relative;
+    @include browser("MSIE 9"){
+      display: table;
+      width: inherit;
+    }
+
+    &__addon{
+      flex-shrink: 0;
+      display: inline-block;
+      margin-left: -25px;
+      margin-top: 16px;
+      width: 60px;
+      text-align: center;
+      @include browser("MSIE 9"){
+        display: table-cell;
+      }
+       & i.fa {
+        font-size: $fa-icon-size;
+        opacity: .6;
+       }
+    }
+
+    &__field{
+      flex-grow: 1;
+      flex-basis: 0;
+      min-width: 150px;
+      padding-bottom: 8px;
+      height: 40px;
+      @include browser("MSIE 9"){
+        display: table-cell;
+      }
+    }
+  }
+  & .form__item{
+    & .item__icon {
+      text-align: center;
+      width: 60px;
+       & i.fa {
+        font-size: $fa-icon-size;
+        opacity: .5;
+       }
+    }
+    & a{
+      color: $header-bg-color;
+    }
+    & .item__cell {
+      display: inline-block;
+      overflow: hidden;
+      padding: 6px 0;
+      text-overflow: ellipsis;
+      vertical-align: top;
+    }
+    & .item__content {
+      padding-left: 25px;
+    }
+  }
+}

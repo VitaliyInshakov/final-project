@@ -1,0 +1,118 @@
+@import '../partials/variables';
+@import '../partials/mixins';
+
+.search {
+  background: rgba(255,255,255,0.16);
+  border: 1px solid rgba(0,0,0,0);
+  border-radius: 4px;
+  max-width: 720px;
+  height: 48px;
+  transition: 100ms ease-in;
+  width: 100%;
+  display: flex;
+  @include browser("MSIE 9"){
+    display: table;
+  }
+  @include media-query(795px){
+    background: none;
+    justify-content: flex-end;
+    @include browser("MSIE 9"){
+      text-align: right;
+    }
+    &__input{
+      display: none;
+    }
+  }
+  &__span{
+    border: none;
+    background: none;
+    padding: 0 4px;
+    pointer-events: none;
+    @include browser("MSIE 9"){
+      display: table-cell;
+      vertical-align: middle;
+      width: 1%;
+      @include media-query(795px){
+        display: inline-block;
+        width: auto;
+      }
+    }
+    @include media-query(795px){
+      cursor: pointer;
+      pointer-events: auto;
+    }
+  }
+  &__icon{
+    padding: 7px;
+    margin: 4px;
+    color: #ffffff;
+    &.fa-search{
+      font-size: 20px;
+    }
+  }
+  &__input{
+    height: 46px;
+    padding: 0;
+    overflow: hidden;
+    background: transparent;
+    border: none;
+    font-size: 16px;
+    color: #000;
+    width: 100%;
+    @include browser("MSIE 9"){
+      display: table-cell;
+      float: left;
+      @include media-query(795px){
+        display: none;
+      }
+    }
+    &::-webkit-input-placeholder{
+      color: rgba(255,255,255,0.7);
+    }
+    &::-moz-input-placeholder{
+      color: rgba(255,255,255,0.7);
+    }
+    &::-moz-input-placeholder{
+      color: rgba(255,255,255,0.7);
+    }
+    &:-ms-input-placeholder{
+      color: rgba(255,255,255,0.7);
+    }
+    
+    &:focus{
+      outline: none;
+      border: none;
+      box-shadow: none;
+    }
+  }
+  &--focus{
+    border: 1px solid rgba(0,0,0,0.12);
+    background: rgba(255,255,255,1);
+    box-shadow: 0 1px 1px rgba(0,0,0,0.24);
+    & .search__icon{
+      color: #000000;
+      opacity: .54;
+    }
+  }
+  &--move{
+    position: absolute;
+    top: 7px;
+    left: 7px;
+    right: 188px;
+    width: auto;
+    @include browser("MSIE 9"){
+      display: block;
+    }
+    @include media-query(599px){
+      top: 3px;
+      left: 3px;
+      right: 4px;
+    }
+    &>span{
+      display: none !important;
+    }
+    &>input{
+      display: block !important;
+    }
+  }
+}

@@ -1,0 +1,57 @@
+@import '../partials/mixins';
+@import '../partials/variables';
+
+.groups{
+  &__title{
+    cursor: pointer;
+    padding: 12px 24px;
+
+    & .title__icon{
+      font-size: $fa-icon-size;
+      color: #616161;
+      margin-right: 16px;
+      margin-top: -4px;
+      opacity: .8;
+    }
+    &:hover{
+      background-color: #f5f5f5;
+    }
+  }
+  &__main{
+    display: none;
+  }
+  &__add{
+    cursor: pointer;
+    padding: 12px 24px;
+
+    & .add__icon{
+      font-size: $fa-icon-size;
+      color: #616161;
+      margin-right: 16px;
+      margin-top: -4px;
+      opacity: .8;
+      font-style: normal;
+    }
+    &:hover{
+      background-color: #f5f5f5;
+    }
+  }
+}
+div.my-modal{
+  &__header{
+    &--group{
+      font-size: 16px;
+      color: $header-bg-color;
+      padding-bottom: 0;
+    }
+  }
+  &__main{
+    &--group{
+      padding-top: 0;
+      margin-top: 0;
+      & .input__field--group{
+        padding: 0;
+      }
+    }
+  }
+}

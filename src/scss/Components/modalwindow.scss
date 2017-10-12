@@ -1,0 +1,118 @@
+@import '../partials/variables';
+@import '../partials/mixins';
+
+.modalOverlayClass{
+  background-color: rgba(0, 0, 0, 0.32);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 100;
+}
+.modalContentClass{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background: #fff;
+  overflow: auto;
+  border-radius: 4px;
+  outline: none;
+  padding: 0;
+  transform: translate(-50%, -50%);
+}
+.modalContentClass--resize {
+  @media only screen and (max-width: 795px), screen and (max-height: 499px) {
+    display: flex;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.my-modal{
+  &--fix-width{
+    min-width: 500px;
+  }
+  @media only screen and (max-width: 795px), screen and (max-height: 499px) {
+    &--fix-width{
+      min-width: auto;
+      max-width: 100%;
+      flex-grow: 1;
+      position: relative;
+      overflow: auto;
+    }
+  }
+
+  &__header{
+    background-color: #f7f7f7;
+    padding: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    @include browser("MSIE 9"){
+      display: table;
+    }
+    & h2 {
+      font-size: 24px;
+      word-wrap: break-word;
+      margin: 0;
+      @include browser("MSIE 9"){
+        display: table-cell;
+        width: 100%;
+      }
+    }
+    & h2.header__title--group{
+      font-size: 14px;
+    }
+    & span {
+      color: rgba(0,0,0,0.87);
+      font-size: $fa-icon-size;
+      cursor: pointer;
+      opacity: .55;
+       &:hover {
+         opacity: .8;
+       }
+    }
+  }
+  &__main{
+    padding: 20px 25px;
+
+     & h3{
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 28px;
+      margin: 0;
+      margin-bottom: 20px;
+      padding-right: 14px;
+     }
+    &--delete{
+      display: none;
+    }
+
+    & .input__field{
+      @include custom-input-field;
+    }
+  }
+  &__footer{
+    display: flex;
+    flex-shrink: 0;
+    justify-content: center;
+    padding: 0 24px 16px 24px;
+    text-align: center;
+    & button.btn {
+      text-transform: uppercase;
+      border: 0;
+      min-width: 64px;
+      outline: none;
+      box-shadow: none;
+
+      &:hover {
+        color: $header-bg-color;
+        background: transparent;
+      }
+      &:active:focus{
+        outline: none;
+      }
+    }
+  }
+}

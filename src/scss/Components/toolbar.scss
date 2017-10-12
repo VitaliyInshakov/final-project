@@ -1,0 +1,35 @@
+@import '../partials/mixins';
+@import '../partials/variables';
+
+.toolbar{
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  width: 260px;
+  min-height: calc(100vh - 64px);
+  padding-top: 15px;
+  border-right: 1px solid rgba(0,0,0,0.12);
+
+  &__title{
+    color: $header-bg-color;
+    padding: 12px 24px;
+  }
+  &__icon.fa-address-book{
+    font-size: 20px;
+    margin-right: 16px;
+    margin-top: -4px;
+    opacity: .8;
+  }
+  &__span{
+    
+  }
+  &__count{
+    
+  }
+  & hr{
+    border: 0;
+    border-bottom: 1px solid rgba(0,0,0,0.12);
+    width: 100%;
+    margin: 7px 0;
+  }
+}

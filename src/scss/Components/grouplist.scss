@@ -1,0 +1,50 @@
+@import '../partials/mixins';
+@import '../partials/variables';
+
+.group-list{
+  @include clear-list;
+  &__item{
+    padding: 12px 24px;
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    & .item__icon.fa-users{
+      font-size: $fa-icon-size;
+      color: #616161;
+      margin-right: 16px;
+      margin-top: -4px;
+      opacity: .8;
+    }
+    & .item__action{
+      position: absolute;
+      right: 20px;
+      top: 0;
+      bottom: 0;
+      line-height: 44px;
+      display: none;
+      background: #f5f5f5;
+      box-shadow: -16px 0 5px -8px #f5f5f5;
+
+      & i.fa.action__icon{
+        font-size: $fa-icon-size;
+        cursor: pointer;
+        margin: 2px;
+        opacity: .55;
+        padding: 2px;
+        
+        &:hover{
+          opacity: 0.8;
+        }
+      }
+    }
+    &:hover{
+      background-color: #f5f5f5;
+      
+      & .item__action{
+        display: block;
+      }
+    }
+  }
+}

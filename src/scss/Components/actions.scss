@@ -1,0 +1,21 @@
+@import '../partials/variables';
+@import '../partials/mixins';
+
+.actions{
+  color: rgba(0,0,0,0.87);
+  text-align: center;
+  display: flex;
+  justify-content: space-around;
+  
+  & i.fa.action__icon{
+    font-size: $fa-icon-size;
+    cursor: pointer;
+    margin: 2px;
+    opacity: .55;
+    padding: 2px;
+    
+    &:hover{
+      opacity: 0.8;
+    }
+  }
+}

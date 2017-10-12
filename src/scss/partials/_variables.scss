@@ -1,0 +1,11 @@
+$red: random(256)-1;
+$green: random(256)-1;
+$blue: random(256)-1;
+$random-color: rgb($red, $green, $blue);
+
+$header-bg-color: #2a56c6;
+$btn-add-bg-color: #e91e63;
+
+$header-height: 48px;
+$main-size-text: 13px;
+$fa-icon-size: 18px;
