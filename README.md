@@ -19,4 +19,5 @@ The application includes the following features:
 4. All served on a [BrowserSync](https://www.browsersync.io/) powered development server
 
 ## Use
-1.
+1. Clone or download this repositoty
+
