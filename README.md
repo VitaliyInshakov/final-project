@@ -13,8 +13,10 @@ The application includes the following features:
 - sort contacts by several points.
 
 ## The technology stack:
-1. [Webpack](https://webpack.github.io/) with [Babel](https://babeljs.io/) are going to transform our .jsx and ES6 in to JavaScript.
+1. [Webpack](https://webpack.github.io/) with [Babel](https://babeljs.io/) are going to transform our .jsx and ES6 in to JavaScript
 2. [Gulp](https://gulpjs.com/) for the rest (compile scss files)
 3. Pre-processor [Sass](http://sass-lang.com/)
-4. All served on a [BrowserSync](https://www.browsersync.io/) powered development server.
+4. All served on a [BrowserSync](https://www.browsersync.io/) powered development server
 
+## Use
+1.
