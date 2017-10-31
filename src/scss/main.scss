@@ -4,6 +4,13 @@
 html {
   overflow: hidden;
 }
+a[href*='/'] {
+  color: inherit;
+  &:hover, &:focus{
+    text-decoration: none;
+    color: inherit;
+  }
+}
 .main{
   position: relative;
 

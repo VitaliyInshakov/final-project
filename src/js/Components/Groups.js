@@ -48,7 +48,7 @@ export default class Groups extends Component {
     let data = this.state.data;
     let inputValue = this.refs.group.value;
     if (!this.state.dialog){
-      let group = {'id': this.state.data.groups.length+1, 'name': inputValue};
+      let group = {'id': this.state.data.groups.length+1, 'name': inputValue, 'contacts': []};
       data.groups.push(group);
       this.setState({data: data});
       this.props.onAction(data, 'groups', 'post', group);

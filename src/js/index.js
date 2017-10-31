@@ -1,6 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './app';
+import { BrowserRouter } from 'react-router-dom';
 
-
-ReactDOM.render(<App data={'api/'} />, document.getElementById('app'));
+ReactDOM.render(
+  <BrowserRouter>
+    <App data={'api/'}/>
+  </BrowserRouter>, document.getElementById('app'));

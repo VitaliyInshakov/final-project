@@ -104,11 +104,35 @@
   "groups": [
     {
       "id": 1,
-      "name": "group1"
+      "name": "group1",
+      "contacts": [
+        {
+          "id": 1,
+          "firstName": "Eddard",
+          "secondName": "Stark",
+          "phone": "+380664997467",
+          "birthday": "01.01.2000",
+          "website": "http://example.com",
+          "email": "eddard.stark@direwolf.com",
+          "company": "freelance"
+        }
+      ]
     },
     {
       "id": 2,
-      "name": "group2"
+      "name": "group2",
+      "contacts": [
+        {
+          "id": 1,
+          "firstName": "Eddard",
+          "secondName": "Stark",
+          "phone": "+380664997467",
+          "birthday": "01.01.2000",
+          "website": "http://example.com",
+          "email": "eddard.stark@direwolf.com",
+          "company": "freelance"
+        }
+      ]
     }
   ]
 }

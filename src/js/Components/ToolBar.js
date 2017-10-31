@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Groups from './Groups';
+import { Link } from 'react-router-dom';
 
 export default class ToolBar extends Component {
   constructor(props){
@@ -16,9 +17,11 @@ export default class ToolBar extends Component {
     return (
       <aside className='toolbar'>
         <div className='toolbar__title'>
-          <i className='fa fa-address-book toolbar__icon'></i>
-          <span className='toolbar__span'>Контакты </span>
-          <span className='toolbar__count'>{`(${this.state.countUsers})`}</span>
+          <Link to='/'>
+            <i className='fa fa-address-book toolbar__icon'></i>
+            <span className='toolbar__span'>Контакты </span>
+            <span className='toolbar__count'>{`(${this.state.countUsers})`}</span>
+          </Link>
         </div>
         <hr/>
         <Groups data={this.props.data} onAction={this.callDataChangeParentComp.bind(this)}/>

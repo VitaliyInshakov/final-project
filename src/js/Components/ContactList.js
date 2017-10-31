@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Actions from './Actions';
 import ModalWindow from './ModalWindow';
+import Modal from 'react-modal';
 import Form from './Form';
 
 export default class ContactList extends Component{
@@ -26,7 +27,7 @@ export default class ContactList extends Component{
       sortBy: id,
       descending: descending
     });
-    this.callDataChangeParentComp(data);
+    if(this.state.data.groups) {this.callDataChangeParentComp(data);}
   }
 
   callDataChangeParentComp(data, path, method, user){
@@ -51,6 +52,43 @@ export default class ContactList extends Component{
     );
   }
 
+  BelongToGroup(){
+    const item = this.state.data.contacts[this.state.dialog.index];
+    let data = (!this.state.data.groups) ? this.props.parentData : this.state.data;
+    const groups = data.groups.map(function(group, index){
+      return (
+        <li key={`group-${index}`} className='group-list__item' onClick={this.handleClickAddToGroup.bind(this, 'addToGroup', index)}>
+          <i className='fa fa-users item__icon'></i>
+          <span className='item__title'>{group.name}</span>
+          {(()=>{
+            for (var i in group.contacts){
+              if(group.contacts[i].id === item.id){
+                return (<i className='fa fa-check action__icon'></i>);
+              } else {
+               return (<i className='fa fa-check action__icon' style={{visibility: 'hidden'}}></i>);;
+              }
+            }
+          })()}
+        </li>
+      );
+    }, this);
+    return (
+      <Modal
+        isOpen={true}
+        onRequestClose={this.handleClickAddToGroup.bind(this, 'dismiss')}
+        className={{base: 'modalContentClass'}}
+        overlayClassName={{base: 'modalOverlayClass'}}
+        contentLabel='Modal Window'>
+        <div className='my-modal__header my-modal__header--group'>Изменить группу</div>
+        <div className='my-modal__main my-modal__main--group'>
+        <ul className='group-list group-list--add'>
+          {groups}
+        </ul>
+        </div>
+      </Modal>
+    );
+  }
+
   ShowModal(readonly){
     const item = this.state.data.contacts[this.state.dialog.index];
     const itemName = `${item[Object.keys(item)[1]]} ${item[Object.keys(item)[2]]}`;
@@ -71,19 +109,57 @@ export default class ContactList extends Component{
       </ModalWindow>
     );
   }
+  handleClickAddToGroup(action, index){
+    if (action === 'dismiss'){
+      this.closeModalWindow();
+      return;
+    }
+    
+    let data = (!this.state.data.groups) ? this.props.parentData : this.state.data;
+    let user = (!this.state.data.groups) ? this.state.data.contacts[this.state.dialog.index] : data.contacts[this.state.dialog.index];
 
+    if (!data.groups[index].contacts.length){
+      data.groups[index].contacts.push(user);
+    } else {
+      for (var i in data.groups[index].contacts){
+        (data.groups[index].contacts[i].id === user.id)
+        ? data.groups[index].contacts.splice(i,1)
+        : data.groups[index].contacts.push(user)
+      }
+    }
+    if (this.state.data.groups) {
+      this.setState({ data: data });
+    } else if (!this.state.data.groups && !this.state.data.contacts.length){
+      this.setState({ dialog: null });
+    }
+    this.callDataChangeParentComp(data, 'groups', 'put', data.groups[index]);
+  }
   handleClickDelete(action){
     if (action === 'dismiss'){
       this.closeModalWindow();
       return;
     }
-    let data = this.state.data;
-    let user = data.contacts[this.state.dialog.index];
-    data.contacts.splice(this.state.dialog.index,1);
-    this.setState({
-      data: data,
-      dialog: null
-    });
+    let data = (!this.state.data.groups) ? this.props.parentData : this.state.data;
+    let user = (this.state.data.groups) ? data.contacts[this.state.dialog.index] : this.state.data.contacts[this.state.dialog.index];
+    for(var i in data.groups){
+      for (var j in data.groups[i].contacts){
+        if(data.groups[i].contacts[j].id === user.id){
+          data.groups[i].contacts.splice(j, 1);
+          this.callDataChangeParentComp(data, 'groups', 'put', data.groups[i]);
+        }
+      }
+    }
+    if (this.state.data.groups) {
+      data.contacts.splice(this.state.dialog.index, 1);
+      this.setState({ data: data });
+    } else {
+      for (var i in data.contacts){
+        if(data.contacts[i].id === user.id){
+          data.contacts.splice(i, 1);
+        }
+      }
+    }
+    this.setState({ dialog: null });
     this.callDataChangeParentComp(data, 'contacts', 'delete', user);
   }
 
@@ -97,13 +173,29 @@ export default class ContactList extends Component{
       return;
     }
 
-    let data = this.state.data;
-    data.contacts[this.state.dialog.index] = this.refs.form.getData();
-    this.setState({
-      data: data,
-      dialog: null
-    });
-    this.callDataChangeParentComp(data, 'contacts', 'put', data.contacts[this.state.dialog.index]);
+    let data = (!this.state.data.groups) ? this.props.parentData : this.state.data;
+    let user = (this.state.data.groups) ? data.contacts[this.state.dialog.index] : this.state.data.contacts[this.state.dialog.index];
+    user = this.refs.form.getData();
+    for(var i in data.groups){
+      for (var j in data.groups[i].contacts){
+        if(data.groups[i].contacts[j].id === user.id){
+          data.groups[i].contacts[j] = user;
+          this.callDataChangeParentComp(data, 'groups', 'put', data.groups[i]);
+        }
+      }
+    }
+    if (this.state.data.groups) {
+      data.contacts[this.state.dialog.index] = user;
+      this.setState({ data: data });
+    } else {
+      for (var i in data.contacts){
+        if(data.contacts[i].id === user.id){
+          data.contacts[i] = user;
+        }
+      }
+    }
+    this.setState({ dialog: null });
+    this.callDataChangeParentComp(data, 'contacts', 'put', user);
   }
 
   renderTable(){
@@ -164,6 +256,8 @@ export default class ContactList extends Component{
         return this.ShowModal(true);
       case 'edit':
         return this.ShowModal();
+      case 'addToGroup':
+        return this.BelongToGroup();
       default:
         throw Error (`Unexpected dialog type ${this.state.dialog.type}`);
     }
