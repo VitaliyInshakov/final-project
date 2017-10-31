@@ -3,12 +3,21 @@
 
 .group-list{
   @include clear-list;
+  &--add {
+    & .item__title {
+      margin-right: 16px;
+    }
+    & i.fa.action__icon{
+      color: #616161;
+    }
+  }
   &__item{
     padding: 12px 24px;
     position: relative;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    cursor: pointer;
 
     & .item__icon.fa-users{
       font-size: $fa-icon-size;

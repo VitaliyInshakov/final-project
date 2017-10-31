@@ -5,7 +5,8 @@ import ContactList from './Components/ContactList';
 import ModalWindow from './Components/ModalWindow';
 import Form from './Components/Form';
 import 'whatwg-fetch';
-import Promise from 'promise-polyfill'; 
+import Promise from 'promise-polyfill';
+import { Switch, Route } from 'react-router-dom' 
 
 if (!window.Promise) {
   window.Promise = Promise;
@@ -85,7 +86,8 @@ export default class App extends Component {
       addNew: false,
       btnDisabled: true,
       showSideBar: true,
-      heightSet: window.innerHeight - 64
+      heightSet: window.innerHeight - 64,
+      history: this.props.history
     }
   }
   componentDidMount() {
@@ -113,7 +115,7 @@ export default class App extends Component {
     if (method === 'post'){
       this.updateDataBase(`${this.props.data}${path}`, method, dataItem);
     } else {
-      (typeof method !== 'undefined') && this.updateDataBase(`${this.props.data}${path}/${dataItem.id}`, method, dataItem);
+      (typeof method !== 'undefined') && this.updateDataBase(`../${this.props.data}${path}/${dataItem.id}`, method, dataItem);
     }
     this.setState({data: data});
   }
@@ -174,10 +176,25 @@ export default class App extends Component {
               <ToolBar data={this.state.data} hide={this.state.showSideBar} onDataChange={this.handleDataChange.bind(this)} />
             </div>
             <div className={`main__content${this.state.showSideBar ? '' : ' main__content--full'}`} style={{height: this.state.heightSet + 'px'}}>
-              <ContactList
-                initialData={this.state.data}
-                schema={infoLabels}
-                onDataChange={this.handleDataChange.bind(this)} />
+              <Switch>
+                <Route exact path='/' render={() => (
+                  <ContactList
+                    initialData={this.state.data}
+                    schema={infoLabels}
+                    onDataChange={this.handleDataChange.bind(this)} />
+                )}/>
+                <Route path='/groups/:id' render={(props) => (
+                  <ContactList
+                  initialData={(()=>{
+                    for(var i = 0; i < this.state.data.groups.length; i++){
+                      if(this.state.data.groups[i].id == props.match.params.id) return this.state.data.groups[i]
+                    }
+                  })()}
+                  parentData={this.state.data}
+                  schema={infoLabels}
+                  onDataChange={this.handleDataChange.bind(this)} />
+                )}/>
+              </Switch>
               <div className='button-add'>
                 <button
                   className='btn'
